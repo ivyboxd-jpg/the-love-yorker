@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Fall in Love with Someone You’ve Never Met | The New Yorker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&family=Roboto+Condensed:wght@300;400;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Babel Standalone for browser-side JSX transpilation -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+      -webkit-font-smoothing: antialiased;
+      font-size: 16px;
+      line-height: 1.6;
+      background-color: #fcfcfc;
+      color: #000;
+    }
+    .ny-headline {
+      font-family: 'Playfair Display', serif;
+      letter-spacing: -0.01em;
+    }
+    .ny-sans {
+      font-family: 'Roboto Condensed', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    .handwriting {
+      font-family: 'Caveat', cursive;
+    }
+    .drop-cap::first-letter {
+      float: left;
+      font-family: 'Playfair Display', serif;
+      font-size: 4.2rem;
+      line-height: 0.7;
+      margin: 0.1em 0.12em 0 0;
+      color: #000;
+      font-weight: 800;
+    }
+    .pull-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.6rem;
+      line-height: 1.25;
+      border-top: 1px solid #000;
+      border-bottom: 1px solid #000;
+      padding: 1.5rem 0;
+      margin: 3rem 0;
+    }
+    .red-accent-line {
+      height: 1px;
+      background-color: #D61F1F;
+      width: 35px;
+      margin: 1rem 0;
+    }
+    .ny-logo-main {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 2.8rem;
+      letter-spacing: -0.04em;
+      line-height: 0.8;
+      display: inline-block;
+      transform: scaleY(1.1);
+    }
+    .ny-logo-the {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      line-height: 1;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-reveal {
+      animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  </style>
+</head>
+<body class="selection:bg-[#fff9c4]">
+  <div id="root"></div>
+
+  <script type="text/babel" data-type="module">
+    import React, { useState } from 'https://esm.sh/react@19.2.4';
+    import ReactDOM from 'https://esm.sh/react-dom@19.2.4/client';
+
+    const HeartSVG = ({ className = "" }) => (
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className={`inline-block mx-1 ${className}`}>
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#D61F1F" fillOpacity="0.4" stroke="#D61F1F" strokeWidth="1.5"/>
+      </svg>
+    );
+
+    const HeroIllustration = () => (
+      <div className="my-10 text-center">
+        <div className="bg-[#fcfcfc] border border-gray-100 py-16 px-4 flex justify-center items-center rounded-sm relative shadow-sm overflow-hidden">
+          <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+               style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/handmade-paper.png")' }}></div>
+          <svg width="420" height="320" viewBox="0 0 420 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(210, 160) scale(1.15)">
+              <g opacity="0.2">
+                <path d="M-110 -40 L 60 -80 L 105 50 L -65 90 Z" stroke="#D61F1F" strokeWidth="0.8" fill="white" />
+                <path d="M-115 -25 L 55 -65 L 100 65 L -70 105 Z" stroke="#D61F1F" strokeWidth="0.8" fill="white" />
+              </g>
+              <g transform="rotate(-6)">
+                <rect x="-95" y="-72" width="190" height="144" stroke="#D61F1F" strokeWidth="1.2" fill="white" strokeLinejoin="round" />
+                <g opacity="0.25">
+                  <path d="M-75 -35 L 20 -35" stroke="#D61F1F" strokeWidth="0.8" />
+                  <path d="M-75 -20 L 40 -20" stroke="#D61F1F" strokeWidth="0.8" />
+                  <path d="M-75 -5 L 30 -5" stroke="#D61F1F" strokeWidth="0.8" />
+                  <path d="M-75 10 L 50 10" stroke="#D61F1F" strokeWidth="0.8" />
+                  <path d="M-75 25 L 15 25" stroke="#D61F1F" strokeWidth="0.8" />
+                </g>
+                <g transform="translate(62, -58)">
+                   <path d="M0 0 C 3 1, 4 -2, 6 0 C 8 -1, 10 1, 12 0 C 14 -1, 15 1, 17 0 C 19 -1, 21 1, 23 0 L 23 35 C 21 34, 19 36, 17 35 C 15 36, 14 34, 12 35 C 10 36, 8 34, 6 35 C 4 36, 3 34, 0 35 Z" stroke="#D61F1F" strokeWidth="0.6" fill="white" />
+                   {/* Refined heart: Perfectly balanced lobes for a clean editorial look */}
+                   <path d="M11.5 28 C 11.5 28 3 21 3 14.5 C 3 10 6.5 8 9.5 8 C 11.5 8 11.5 10 11.5 10 C 11.5 10 11.5 8 13.5 8 C 16.5 8 20 10 20 14.5 C 20 21 11.5 28 11.5 28 Z" fill="#D61F1F" />
+                </g>
+              </g>
+            </g>
+          </svg>
+        </div>
+        <p className="mt-5 text-[11px] ny-sans tracking-widest text-gray-400 max-w-[70%] mx-auto uppercase">
+          Fig 1. A physical archive of digital correspondence.
+        </p>
+      </div>
+    );
+
+    const Sunflower = ({ transform = "", size = 1 }) => (
+      <g transform={`${transform} scale(${size})`}>
+        {[...Array(16)].map((_, i) => (
+          <path 
+            key={`p-${i}`} 
+            d="M0 -10 C 6 -32, 10 -42, 0 -45 C -10 -42, -6 -32, 0 -10" 
+            fill="#ffcc33" 
+            transform={`rotate(${i * 22.5})`} 
+          />
+        ))}
+        <circle cx="0" cy="0" r="16" fill="#3d2310" stroke="#1a0f07" strokeWidth="0.8" />
+        <circle cx="0" cy="0" r="10" fill="#543118" opacity="0.3" />
+        {[...Array(8)].map((_, i) => (
+          <circle key={`d-${i}`} cx={Math.cos(i) * 7} cy={Math.sin(i) * 7} r="0.7" fill="#1a0a01" opacity="0.3" />
+        ))}
+      </g>
+    );
+
+    const SunflowerArrangement = () => (
+      <div className="flex flex-col items-center my-24 select-none">
+        <div className="relative w-[360px] h-[440px] flex flex-col items-center">
+           <svg width="360" height="340" viewBox="0 0 360 340" className="overflow-visible">
+             <g stroke="#3a4524" strokeWidth="1.5" strokeLinecap="round" opacity="0.2">
+                <path d="M180 320 L 180 100" />
+                <path d="M180 320 L 120 180" />
+                <path d="M180 320 L 240 180" />
+                <path d="M180 320 L 180 230" />
+             </g>
+             <Sunflower transform="translate(180, 100)" size={0.9} />
+             <Sunflower transform="translate(120, 180)" size={0.7} />
+             <Sunflower transform="translate(240, 180)" size={0.7} />
+             <Sunflower transform="translate(180, 230)" size={0.55} />
+           </svg>
+           <div className="absolute bottom-2 transform -rotate-1 bg-[#fffcf9] p-4 shadow-xl border border-[#ede1d1] w-[220px] z-20">
+              <div className="relative">
+                <div className="absolute inset-0 opacity-[0.02] pointer-events-none" 
+                     style={{ backgroundImage: 'linear-gradient(#000 1px, transparent 1px)', backgroundSize: '100% 20px' }}></div>
+                <div className="relative">
+                  <div className="mb-1.5 border-b border-[#f3e5d3] pb-0.5">
+                    <span className="handwriting text-[0.95rem] text-gray-800">Dear Aaradhya,</span>
+                  </div>
+                  <p className="handwriting text-[0.82rem] text-gray-700 leading-tight mb-2.5">
+                    I made this arrangement of sunflowers for you. They’re constant, bright, and completely immune to the territory between us. They won’t wilt, and they’re always reaching for your light.
+                  </p>
+                  <div className="flex justify-end items-center">
+                    <span className="handwriting text-[0.9rem] text-gray-900 border-b border-red-50">Sincerely, Niv</span>
+                  </div>
+                </div>
+              </div>
+           </div>
+        </div>
+      </div>
+    );
+
+    const App = () => {
+      const [isRevealed, setIsRevealed] = useState(false);
+
+      return (
+        <div className="min-h-screen flex flex-col">
+          {/* Header */}
+          <header className="border-b border-black py-6 sticky top-0 bg-white z-50">
+            <div className="max-w-[1140px] mx-auto px-4">
+              <div className="flex flex-col items-center relative">
+                <div className="flex flex-col items-center select-none cursor-pointer">
+                  <span className="ny-logo-the uppercase">The</span>
+                  <span className="ny-logo-main uppercase mt-0.5">New Yorker</span>
+                </div>
+                <div className="mt-2.5">
+                  <span className="ny-sans text-[8px] font-bold tracking-[0.25em] text-gray-400 border-t border-b border-gray-100 py-1 px-4">
+                    SPECIAL VALENTINE'S EDITION • 2026
+                  </span>
+                </div>
+              </div>
+            </div>
+          </header>
+
+          <main className="flex-grow pt-8 lg:pt-12">
+            <div className="max-w-[1140px] mx-auto px-4 flex flex-col lg:flex-row gap-12">
+              {/* Article Content */}
+              <div className="w-full lg:w-[720px] mx-auto">
+                <article className="max-w-[640px] mx-auto pb-40 px-4">
+                  <div className="flex flex-col items-center mb-10">
+                    <span className="ny-sans text-[11px] font-bold tracking-[0.4em] text-[#D61F1F]">MODERN LOVE • EXCLUSIVE</span>
+                    <div className="red-accent-line"></div>
+                  </div>
+                  
+                  <h1 className="ny-headline text-[2.6rem] md:text-[3rem] leading-[1.1] text-center mb-8 font-bold text-gray-900">
+                    How to Fall in Love with Someone You’ve Never Met
+                  </h1>
+                  
+                  <p className="font-serif text-[1.2rem] leading-[1.4] text-center italic text-gray-500 mb-14 max-w-[85%] mx-auto">
+                    “A study of cytoplasmic streaming, the specific gravity of the word 'Dhoklu,' and the absurd persistent physics of a glowing rectangle.”
+                  </p>
+
+                  <div className="flex flex-col items-center mb-16 border-t border-b border-gray-100 py-6">
+                    <span className="ny-sans text-[10px] font-bold tracking-widest uppercase mb-1">By Niv</span>
+                    <span className="ny-sans text-[9px] text-gray-400 uppercase tracking-[0.2em] mt-0.5">February 14, 2026</span>
+                  </div>
+
+                  <HeroIllustration />
+
+                  <div className="article-body font-serif text-[1.125rem] leading-[1.7] text-[#1a1a1a] space-y-10">
+                    <p className="drop-cap">
+                      Eight months ago, I sent a message into the void. It wasn't a grand romantic gesture. It was more of a tentative tap on a screen, the kind of digital noise that usually dissolves into the ether of a Friday night. But then, she replied. And suddenly, the territory between us stopped being a statistic and started being a pulse.
+                    </p>
+                    <p>
+                      I have become an expert in the absurd biology of the FaceTime window. I know her lighting at 7 PM. I know which lipstick routine corresponds to which level of daily chaos. There is something deeply humane, and entirely ridiculous, about loving someone through a pane of glass; it forces you to become a student of the invisible parts of a person that no physical proximity could reveal.
+                    </p>
+                    
+                    <h2 className="ny-headline text-[1.8rem] font-bold pt-8 pb-1 border-b border-gray-50">
+                      I. The Mitochondrial Longing
+                    </h2>
+                    <p>
+                      Aaradhya thinks in mitochondria. She speaks in the language of cells and complex, silent pathways. I listen. I have dozens of her voice notes archived on my phone—tiny, compressed artifacts of her day. Some are lectures on biology; others are just the word "Dhoklu," spoken with a specific inflection that I have since categorized as 'highly critical yet deeply affectionate.'
+                    </p>
+                    
+                    <blockquote className="pull-quote py-10 my-12 px-8 text-center bg-[#fafafa]">
+                      “The greatest stretch between two people is not space, but the time it takes to finally say the things that have been waiting in the queue.”
+                    </blockquote>
+
+                    <h2 className="ny-headline text-[1.8rem] font-bold pt-8 pb-1">
+                      II. The Architecture of the Cloud-House
+                    </h2>
+                    <p>
+                      We build domestic fictions. We talk about grocery shopping for things we don't need yet. We plan the lives of four hypothetical cats: Stitch, Ivy, Jackie, and Wilson. This is the absurdity of the long-distance heart: you spend your present building a future that exists entirely in the cloud.
+                    </p>
+                    
+                    <SunflowerArrangement />
+
+                    <h2 className="ny-headline text-[1.8rem] font-bold pt-8 pb-1">
+                      III. Toward Zero Point
+                    </h2>
+                    <p>
+                      Eventually, the counting will stop. The vast stretch of territory will collapse into zero. The "Hey Dhoklu" will no longer be a file to be played, but a vibration in the physical air of a kitchen. We’ll do the dishes, we’ll argue about heirloom tomatoes, and the internet will finally just be a place where people look at videos of other people's cats.
+                    </p>
+
+                    {!isRevealed ? (
+                      <div className="mt-20 p-10 border border-dashed border-gray-300 bg-[#fdfcfb] text-center transform hover:scale-[1.005] transition-all cursor-pointer group" onClick={() => setIsRevealed(true)}>
+                        <div className="mb-4 opacity-20 group-hover:opacity-40 transition-opacity">
+                          <HeartSVG />
+                        </div>
+                        <span className="ny-sans text-[9px] font-bold tracking-[0.3em] block mb-2 text-gray-400 uppercase">Archive Seal: 0214-26</span>
+                        <h3 className="ny-headline text-lg italic mb-6 text-gray-700">A final, absurd note for the recipient.</h3>
+                        <button className="bg-black text-white px-6 py-2.5 ny-sans text-[9px] tracking-[0.2em] hover:bg-red-800 transition-all font-bold">
+                          OPEN ENVELOPE
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="mt-20 p-12 border border-double border-[#D61F1F] bg-white text-center animate-reveal shadow-sm relative">
+                         <div className="absolute top-4 left-4 opacity-10"><HeartSVG /></div>
+                         <div className="absolute bottom-4 right-4 opacity-10"><HeartSVG /></div>
+                         <span className="ny-sans text-[10px] font-bold tracking-[0.4em] text-[#D61F1F] block mb-8">INTERNAL ARCHIVE #001</span>
+                         <p className="handwriting text-2xl md:text-3xl leading-relaxed text-gray-800 px-2">
+                           “Aaradhya, I’m so incredibly in love with you. From the cellular biology lectures to the cross-country flight paths. You’re my favorite person to exist with. Happy Valentine’s Day, my miracle.”
+                         </p>
+                         <div className="mt-8 flex justify-center space-x-2">
+                            {[...Array(3)].map((_, i) => (
+                              <HeartSVG key={i} className="opacity-40" />
+                            ))}
+                         </div>
+                      </div>
+                    )}
+                  </div>
+                </article>
+              </div>
+
+              {/* Sidebar */}
+              <aside className="hidden lg:block w-[300px]">
+                <div className="sticky top-40 space-y-12 pb-24 border-l border-gray-100 pl-8">
+                  <div>
+                    <h3 className="ny-sans text-[9px] font-bold tracking-[0.2em] mb-8 border-b border-black pb-2 uppercase text-gray-800">The Niche Archives</h3>
+                    <ul className="space-y-8">
+                      {[
+                        { category: 'BIOLOGY', title: 'Why saying "Hey Dhoklu" Increases My Cellular Efficiency' },
+                        { category: 'ZOOLOGY', title: 'A Comparative Analysis of Names for a Fourth Cat' },
+                        { category: 'ASTRONOMY', title: 'How 2,083 Kilometers is Actually a Very Small Distance' },
+                        { category: 'PHILOSOPHY', title: 'The Shared Silence of a Muted Zoom Call' }
+                      ].map((item, idx) => (
+                        <li key={idx} className="group cursor-pointer">
+                          <span className="ny-sans text-[8px] font-bold text-[#D61F1F] tracking-widest mb-1.5 block group-hover:underline uppercase">{item.category}</span>
+                          <span className="font-serif text-[1rem] font-bold group-hover:underline block text-[#333]">{item.title}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="pt-8 border-t border-gray-100">
+                    <div className="bg-[#fffcfc] p-6 border border-[#ffe4e4] rounded-sm text-center">
+                       <p className="font-serif text-[14px] italic text-gray-500 leading-relaxed">
+                         "She is currently explaining mitosis. I have no idea what she's saying, but I like her voice."
+                       </p>
+                    </div>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </main>
+
+          {/* Footer */}
+          <footer className="bg-white border-t border-black py-24 mt-12">
+            <div className="max-w-[1140px] mx-auto px-4 text-center">
+              <div className="flex flex-col items-center select-none mb-10">
+                <span className="ny-logo-the uppercase">The</span>
+                <span className="ny-logo-main uppercase mt-1">New Yorker</span>
+              </div>
+              <p className="font-serif text-[16px] text-gray-500 italic px-4">
+                "This special digital keepsake was commissioned by Niv for Aaradhya on Valentine's Day. 2026."
+              </p>
+            </div>
+          </footer>
+        </div>
+      );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
